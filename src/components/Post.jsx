@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Loading from "./Layout/Loading";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const url = "https://jsonplaceholder.typicode.com/users";
@@ -30,14 +31,15 @@ const Post = () => {
 	  {isloading && !users.length && <Loading /> }
       <div className=" grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-4 gap-5 mx-5">
         {users.map((user) => (
-          <div
+          <Link
+            to={`/user/${user.id}`}
             key={user.id}
             className="w-full bg-slate-900 text-white flex justify-start items-start flex-col p-5"
           >
             <h2 className=" font-semibold text-2xl">{user.name}</h2>
             <h5 className=" text-base">{user.email}</h5>
             <p className="text-sm">{user.username}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

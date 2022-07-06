@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "name": "ICS-WEB",
-  "description": "This is the description of the web PWA application",
-  "short_name": "ICS-PWA",
+  "name": "Bambumeta-PWA",
+  "description": "This is the description of the bambumeta-pwa application ",
+  "short_name": "Bambumeta-PWA",
   "icons": [
     {
       "src": "maskable_icon_x48.png",
