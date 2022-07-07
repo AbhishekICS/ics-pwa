@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { GrMenu, GrClose } from "react-icons/gr";
+import { authentication } from "../../firebase";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
   const navigate = useNavigate();
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    signOut(authentication);
+    localStorage.removeItem('user')
     navigate("/login");
   };
 
@@ -17,7 +20,11 @@ const Header = () => {
     <header className="h-20 w-full bg-amber-700 text-white">
       <nav className=" max-w-7xl mx-auto flex justify-between items-center h-full">
         <div className=" text-2xl font-semibold uppercase ml-2 flex">
-          <img src="/maskable_icon.png" className="h-10 text-white" alt="logo" />
+          <img
+            src="/maskable_icon.png"
+            className="h-10 text-white"
+            alt="logo"
+          />
           <Link to="/">bambumeta</Link>
         </div>
         <ul className=" flex space-x-4 mr-4">
@@ -28,7 +35,7 @@ const Header = () => {
                 onClick={() => setSideMenuOpen(true)}
               />
               {sideMenuOpen && (
-                <div className="fixed top-0 right-0 md:w-[20%] w-1/2 bg-amber-800 h-screen flex justify-center  transition-all delay-700">
+                <div className="fixed top-0 right-0 md:w-[20%] w-1/2 bg-amber-800 h-screen flex justify-center z-50  transition-all delay-700">
                   <ul className="flex space-y-20 flex-col mt-10 w-full mx-2">
                     <div className="absolute top-5 right-8">
                       <GrClose
@@ -37,7 +44,7 @@ const Header = () => {
                       />
                     </div>
                     <li className=" ml-2 text-xl w-40 text-ellipsis overflow-clip">
-                      Hello : {user.givenName}
+                      Hello : {user.displayName}
                     </li>
                     <li className="w-full">
                       <button
