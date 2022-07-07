@@ -8,14 +8,16 @@ const Header = () => {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    localStorage.removeItem("username");
+    localStorage.removeItem("user");
     navigate("/login");
   };
-  const user = localStorage.getItem("username");
+
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header className="h-20 w-full bg-amber-700 text-white">
       <nav className=" max-w-7xl mx-auto flex justify-between items-center h-full">
         <div className=" text-2xl font-semibold uppercase ml-2">
+          <img src="/maskable_icon.png" className="h-10" alt="" srcset="" />
           <Link to="/">bambumeta</Link>
         </div>
         <ul className=" flex space-x-4 mr-4">
@@ -23,11 +25,11 @@ const Header = () => {
             <div className=" flex space-x-4 justify-center text-white items-center">
               <GrMenu
                 className="text-4xl text-gray-50 white-color"
-                onClick={() => setSideMenuOpen(!sideMenuOpen)}
+                onClick={() => setSideMenuOpen(true)}
               />
               {sideMenuOpen && (
                 <div className="fixed top-0 right-0 md:w-[20%] w-1/2 bg-amber-800 h-screen flex justify-center  transition-all delay-700">
-                  <ul className="flex space-y-4 flex-col mt-24 w-full mx-2">
+                  <ul className="flex space-y-20 flex-col mt-10 w-full mx-2">
                     <div className="absolute top-5 right-8">
                       <GrClose
                         className=" text-3xl cursor-pointer white-color"
@@ -35,7 +37,7 @@ const Header = () => {
                       />
                     </div>
                     <li className=" ml-2 text-xl w-40 text-ellipsis overflow-clip">
-                      Hello : {user}
+                      Hello : {user.givenName}
                     </li>
                     <li className="w-full">
                       <button
