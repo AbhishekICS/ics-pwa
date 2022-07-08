@@ -1,48 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  signInWithPopup,
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-} from "firebase/auth";
-import { authentication } from "../firebase";
 
 function Login() {
   const navigate = useNavigate();
-
-  const handleSingInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(authentication, provider)
-      .then((res) => {
-        console.log("Google", res.user.providerData[0]);
-        localStorage.setItem("user", JSON.stringify(res.user.providerData[0]));
-        navigate('/')
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
-
-  const handleSingInWithFacebook = () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(authentication, provider)
-      .then((res) => {
-        console.log("FaceBook", res);
-        localStorage.setItem("user", JSON.stringify(res.user.providerData[0]));
-        navigate('/')
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
-  };
-
-  useEffect(()=>{
-  const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    const user = localStorage.getItem("username");
     if (user) {
-      navigate('/')
+      navigate("/");
     }
-  },[])
+  }, []);
 
   return (
     <div>
@@ -63,10 +30,7 @@ function Login() {
                   </h2>
                 </div>
                 <div className="mt-16 grid space-y-4">
-                  <button
-                    onClick={handleSingInWithGoogle}
-                    className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
-                  >
+                  <button className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100">
                     <div className="relative flex items-center space-x-4 justify-center">
                       <img
                         src="https://tailus.io/sources/blocks/social/preview/images/google.svg"
@@ -80,7 +44,6 @@ function Login() {
                   </button>
 
                   <button
-                    onClick={handleSingInWithFacebook}
                     className="group h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 
                                      hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100"
                   >

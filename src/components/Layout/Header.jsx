@@ -2,20 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { GrMenu, GrClose } from "react-icons/gr";
-import { authentication } from "../../firebase";
-import { signOut } from "firebase/auth";
-
-const Header = () => {
+const Header = ({ signOut, user }) => {
   const navigate = useNavigate();
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const handleLogout = () => {
-    signOut(authentication);
-    localStorage.removeItem('user')
-    navigate("/login");
+    localStorage.removeItem("username");
+    signOut();
+    navigate("/");
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header className="h-20 w-full bg-amber-700 text-white">
       <nav className=" max-w-7xl mx-auto flex justify-between items-center h-full">
@@ -44,7 +40,7 @@ const Header = () => {
                       />
                     </div>
                     <li className=" ml-2 text-xl w-40 text-ellipsis overflow-clip">
-                      Hello : {user.displayName}
+                      Hello : {user.username}
                     </li>
                     <li className="w-full">
                       <button

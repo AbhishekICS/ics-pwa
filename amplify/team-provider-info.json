@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bambometa-dev-123706-authRole",
+      "UnauthRoleArn": "arn:aws:iam::371406393093:role/amplify-bambometa-dev-123706-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::371406393093:role/amplify-bambometa-dev-123706-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-bambometa-dev-123706-deployment",
+      "UnauthRoleName": "amplify-bambometa-dev-123706-unauthRole",
+      "StackName": "amplify-bambometa-dev-123706",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:371406393093:stack/amplify-bambometa-dev-123706/94adfdf0-fe8c-11ec-aa15-021ce23a1022",
+      "AmplifyAppId": "d19y2ls1hd4cy8"
+    },
+    "categories": {
+      "auth": {
+        "bambometafe8ccf94": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d19y2ls1hd4cy8",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}
